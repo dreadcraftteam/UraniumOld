@@ -13,6 +13,7 @@ find_package(glfw3 REQUIRED)
 
 # The projects are in the order of building
 add_subdirectory(stdlib)
+add_subdirectory(filesystem)
 add_subdirectory(inputsystem)
 add_subdirectory(materialsystem)
 add_subdirectory(gameui)
