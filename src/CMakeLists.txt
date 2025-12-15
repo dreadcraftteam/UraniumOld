@@ -11,6 +11,8 @@ find_package(GLEW REQUIRED)
 find_package(GLUT REQUIRED)
 find_package(glfw3 REQUIRED)
 
+# The projects are in the order of building
+add_subdirectory(stdlib)
 add_subdirectory(inputsystem)
 add_subdirectory(materialsystem)
 add_subdirectory(gameui)
@@ -18,4 +20,5 @@ add_subdirectory(launcher)
 add_subdirectory(engine)
 add_subdirectory(game)
 
+# Disable warning messages
 add_definitions(-w)
