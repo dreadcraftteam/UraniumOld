@@ -5,7 +5,8 @@
 #include "engine_pch.h"
 
 #include "SDL2/SDL.h"
-#include "SDL2/SDL_opengl.h"
+
+#include "glad/glad.h"
 
 #include "engine_main.h"
 #include "engine_window.h"
@@ -86,7 +87,13 @@ void Engine_Window(void)
 
         return;
     }
-    
+
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+
     char windowTitle[256];
     
     if (title) 
@@ -99,7 +106,7 @@ void Engine_Window(void)
     }
 
     // Window creation
-    SDL_Window* frame = SDL_CreateWindow(windowTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, frameWidth, frameHeight, SDL_WINDOW_OPENGL);
+    SDL_Window* frame = SDL_CreateWindow(windowTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, frameWidth, frameHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
 
     // Disable resizing for the window
     SDL_SetWindowResizable(frame, false);
@@ -111,6 +118,36 @@ void Engine_Window(void)
 
         return;
     }
+
+    SDL_GLContext glContext = SDL_GL_CreateContext(frame);
+    
+    if (glContext == NULL)
+    {
+        Error("Failed to create OpenGL context!\n");
+    
+        SDL_DestroyWindow(frame);
+        SDL_Quit();
+        
+        return;
+    }
+
+    if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress))
+    {
+        Error("Failed to initialize GLAD!\n");
+        
+        SDL_GL_DeleteContext(glContext);
+        SDL_DestroyWindow(frame);
+        SDL_Quit();
+        
+        return;
+    }
+
+    glEnable(GL_DEPTH_TEST);
+
+    glClearColor(0.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f, 1.0f);
+
+    // VSync
+    SDL_GL_SetSwapInterval(1);
 
     Engine_Init();
 
@@ -129,7 +166,11 @@ void Engine_Window(void)
             }
         }
 
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
         Engine_Update();
+
+        SDL_GL_SwapWindow(frame);
 
         // Small delay to prevent CPU overuse
         SDL_Delay(fpsLimit);
