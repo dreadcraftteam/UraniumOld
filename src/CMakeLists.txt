@@ -6,11 +6,6 @@ cmake_minimum_required(VERSION 3.10)
 
 project(Uranium, LANGUAGES C)
 
-find_package(OpenGL REQUIRED)
-find_package(GLEW REQUIRED)
-find_package(GLUT REQUIRED)
-find_package(glfw3 REQUIRED)
-
 # The projects are in the order of building
 add_subdirectory(stdlib)
 add_subdirectory(filesystem)
