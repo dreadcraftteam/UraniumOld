@@ -86,9 +86,20 @@ void Engine_Window(void)
 
         return;
     }
+    
+    char windowTitle[256];
+    
+    if (title) 
+    {
+        #ifdef _32BIT
+            snprintf(windowTitle, sizeof(windowTitle), "%s - 32 Bit", title);
+        #elif _64BIT
+            snprintf(windowTitle, sizeof(windowTitle), "%s - 64 Bit", title);
+        #endif
+    }
 
     // Window creation
-    SDL_Window* frame = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, frameWidth, frameHeight, SDL_WINDOW_OPENGL);
+    SDL_Window* frame = SDL_CreateWindow(windowTitle, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, frameWidth, frameHeight, SDL_WINDOW_OPENGL);
 
     // Disable resizing for the window
     SDL_SetWindowResizable(frame, false);
