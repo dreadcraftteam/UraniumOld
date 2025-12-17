@@ -1,10 +1,6 @@
-//=============================================================//
-//
 // Filesystem library for easy working with files in engine
-//
 // By DREADCRAFT
 //
-//=============================================================//
 
 #include "stdio.h"
 #include "stdlib.h"

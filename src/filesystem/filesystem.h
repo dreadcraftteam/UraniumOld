@@ -1,10 +1,6 @@
-//=============================================================//
-//
 // Filesystem library for easy working with files in engine
-//
 // By DREADCRAFT
 //
-//=============================================================//
 
 #ifndef FILESYSTEM_H
 #define FILESYSTEM_H
