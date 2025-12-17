@@ -11,6 +11,8 @@ set(SOURCES
     engine.h
     engine_main.c
     engine_main.h
+    engine_messages.c
+    engine_messages.h
     engine_window.c
     engine_window.h
     glad.c

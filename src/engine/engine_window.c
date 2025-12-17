@@ -103,9 +103,6 @@ void Engine_Window(void)
 
     Engine_Init();
 
-    // General flag for engine working
-    running = true;
-
     SDL_Event event;
 
     while (running)

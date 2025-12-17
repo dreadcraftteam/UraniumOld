@@ -1,10 +1,6 @@
-//=============================================================//
-//
-// Messages to display in the terminal and in the console
-//
+// Messages tp display in the terminal and in the console
 // By DREADCRAFT
 //
-//=============================================================//
 
 #ifndef MESSAGES_H
 #define MESSAGES_H

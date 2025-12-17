@@ -1,10 +1,6 @@
-//=============================================================//
-//
 // Messages to display in the terminal and in the console
-//
 // By DREADCRAFT
 //
-//=============================================================//
 
 #include "stdio.h"
 #include "stdarg.h"

@@ -5,7 +5,9 @@
 #include "engine_pch.h"
 
 #include "filesystem.h"
+#include "engine_messages.h"
 #include "sv_main.h"
+#include "variables.h"
 
 static ServerApi g_Server = {0};
 
@@ -15,6 +17,7 @@ bool SV_Init(const char* modulePath)
     g_Server.module = FileSys_LoadModule(modulePath);
     if (!g_Server.module)
     {
+        Engine_Error("Failed to load server.so!", NULL);
         Error("Failed to load module: %s\n", modulePath);
 
         return false;
@@ -26,6 +29,7 @@ bool SV_Init(const char* modulePath)
 
     if (!Server_Init || !Server_Update || !Server_Shutdown)
     {
+        Error("Failed to load functions from server.so!\n");
         FileSys_CloseModule(g_Server.module);
         g_Server.module = NULL;
 

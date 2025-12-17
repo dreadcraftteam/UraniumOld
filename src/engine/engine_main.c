@@ -6,6 +6,7 @@
 
 #include "cl_main.h"
 #include "engine_main.h"
+#include "engine_messages.h"
 #include "filesystem.h"
 #include "sv_main.h"
 #include "variables.h"
