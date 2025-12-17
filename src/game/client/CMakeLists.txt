@@ -41,5 +41,15 @@ set_target_properties(${PROJECT_NAME} PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${CMAK
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
 
+if(ARCH_BITNESS STREQUAL "32")
+    add_compile_definitions(_32BIT)
+    target_compile_options(${PROJECT_NAME} PRIVATE -m32)
+    target_link_options(${PROJECT_NAME} PRIVATE -m32)
+else()
+    add_compile_definitions(_64BIT)
+    target_compile_options(${PROJECT_NAME} PRIVATE -m64)
+    target_link_options(${PROJECT_NAME} PRIVATE -m64)
+endif()
+
 # Disable warning messages
 add_definitions(-w)

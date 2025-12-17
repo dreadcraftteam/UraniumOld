@@ -16,5 +16,15 @@ set_target_properties(${PROJECT_NAME} PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${CMAK
 
 set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "")
 
+if(ARCH_BITNESS STREQUAL "32")
+    add_compile_definitions(BIT32)
+    target_compile_options(${PROJECT_NAME} PRIVATE -m32)
+    target_link_options(${PROJECT_NAME} PRIVATE -m32)
+else()
+    add_compile_definitions(BIT64)
+    target_compile_options(${PROJECT_NAME} PRIVATE -m64)
+    target_link_options(${PROJECT_NAME} PRIVATE -m64)
+endif()
+
 add_definitions(-fPIC)
 add_definitions(-w)

@@ -1,10 +1,68 @@
 #!/bin/bash
 
-# Configuring project
-cmake -B cmake
+# Default values
+ARCH="64"
+FORCE_CLEAN=false
+REBUILD=false
+NO_PROMPT=true
 
-# Building project
+show_help() {
+    echo "Uranium (engine) build script"
+    echo ""
+    echo "Usage:"
+    echo "  ./build [OPTIONS]"
+    echo ""
+    echo "Options:"
+    echo "  --arch=x32|--arch=32     Build for 32-bit architecture"
+    echo "  --arch=x64|--arch=64     Build for 64-bit architecture (default)"
+    echo "  --clean                  Remove CMake cache"
+    echo "  --rebuild                Rebuild all projects (remove CMake cache and build)"
+    echo "  --help                   Show this help message"
+    exit 0
+}
+
+for arg in "$@"; do
+    case $arg in
+        --arch=x32|--arch=32)
+            ARCH="32"
+            ;;
+        --arch=x64|--arch=64)
+            ARCH="64"
+            ;;
+        --clean)
+            FORCE_CLEAN=true
+            ;;
+        --rebuild)
+            REBUILD=true
+            ;;
+        --help)
+            show_help
+            ;;
+        *)
+            echo "Unknown argument: '$arg'"
+            echo "Use './build --help' for usage information"
+            exit 1
+            ;;
+    esac
+done
+
+if [[ "$FORCE_CLEAN" == "true" ]] && [[ "$REBUILD" == "false" ]]; then
+    if [[ -d "cmake" ]]; then
+        echo "Removing CMake cache..."
+        rm -rf cmake
+        echo "Clean completed."
+    else
+        echo "No CMake cache found. Nothing to clean."
+    fi
+    exit 0
+fi
+
+if [[ "$REBUILD" == "true" ]]; then
+    if [[ -d "cmake" ]]; then
+        rm -rf cmake
+    fi
+fi
+
+# Configure and build
+cmake -B cmake -DBIT_ARCH=$ARCH
 cmake --build cmake --config Release
-
-# Removing folder with shit
-sudo rm -rf cmake
