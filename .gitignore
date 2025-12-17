@@ -10,4 +10,5 @@ build/uranium
 src/cmake_install.cmake 
 src/Makefile 
 src/CMakeCache.txt 
-src/.vscode/ 
+src/.vscode/
+src/lib/common/*
