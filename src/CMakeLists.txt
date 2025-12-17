@@ -4,7 +4,7 @@
 
 cmake_minimum_required(VERSION 3.10)
 
-project(Uranium, LANGUAGES C)
+project(Uranium LANGUAGES C)
 
 # The projects are in the order of building
 add_subdirectory(stdlib)
