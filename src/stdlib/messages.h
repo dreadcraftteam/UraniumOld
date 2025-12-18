@@ -9,7 +9,7 @@
 #include "stdarg.h"
 
 /* Standard message */
-void Message(const char* message, ...);
+void Msg(const char* message, ...);
 
 /* Error message */
 void Error(const char* message, ...);

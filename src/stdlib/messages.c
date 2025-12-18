@@ -8,7 +8,7 @@
 #include "messages.h"
 
 /* Standard message */
-void Message(const char* message, ...)
+void Msg(const char* message, ...)
 {
     va_list args;
     va_start(args, message);

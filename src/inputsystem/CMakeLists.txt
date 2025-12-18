@@ -1,30 +1,15 @@
 #
-# CMAKELISTS.TXT FOR ENGINE PROJECT
+# CMAKELISTS.TXT FOR INPUTSYSTEM PROJECT
 #
 
-project(engine)
+project(inputsystem)
 
 set(SOURCES
-    cl_main.c
-    cl_main.h
-    engine.c
-    engine.h
-    engine_main.c
-    engine_main.h
-    engine_messages.c
-    engine_messages.h
-    engine_window.c
-    engine_window.h
-    glad.c
-    sv_main.c
-    sv_main.h
-    variables.h
+    inputsystem.c
+    inputsystem.h
 )
 
 add_library(${PROJECT_NAME} SHARED ${SOURCES})
-
-# PCH file :well:
-target_precompile_headers(engine PRIVATE "engine_pch.h")
 
 # Include directories:
 target_include_directories(${PROJECT_NAME}
@@ -32,7 +17,6 @@ target_include_directories(${PROJECT_NAME}
 
                            ${CMAKE_SOURCE_DIR}/include/
                            ${CMAKE_SOURCE_DIR}/stdlib/
-                           ${CMAKE_SOURCE_DIR}/filesystem/
 )
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
@@ -48,10 +32,8 @@ target_link_libraries(${PROJECT_NAME}
                       PRIVATE
 
                       stdlib
-                      filesystem
                       ${SDL_LIB_PATH}
                       m
-                      inputsystem
 )
 
 file(MAKE_DIRECTORY ${CMAKE_SOURCE_DIR}/../build/bin/)

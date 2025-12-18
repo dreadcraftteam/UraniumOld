@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [[ $EUID -ne 0 ]]; then
+    exec sudo "$0" "$@"
+fi
+
 # Default values
 ARCH="64"
 FORCE_CLEAN=false

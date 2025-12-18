@@ -15,5 +15,6 @@
 /* Includes from engine libraries */
 #include "../stdlib/messages.h"
 #include "../filesystem/filesystem.h"
+#include "../inputsystem/inputsystem.h"
 
 #endif // ENGINE_PCH_H

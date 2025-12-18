@@ -1,5 +1,5 @@
-//
-//
+// Message boxes on SDL2 for engine
+// By DREADCRAFT
 //
 
 #include "engine_pch.h"
@@ -8,7 +8,7 @@
 #include "SDL2/SDL_messagebox.h"
 
 /* Standard message */
-void Engine_Message(const char* message, SDL_Window *frame)
+void Engine_Msg(const char* message, SDL_Window *frame)
 {
     SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Engine Message!", message, frame);
 }

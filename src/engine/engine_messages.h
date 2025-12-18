@@ -11,7 +11,7 @@
 #include "SDL2/SDL_messagebox.h"
 
 /* Standard message */
-void Engine_Message(const char* message, SDL_Window *frame);
+void Engine_Msg(const char* message, SDL_Window *frame);
 
 /* Error message */
 void Engine_Error(const char* message, SDL_Window *frame);

@@ -4,6 +4,9 @@
 
 #include "engine_pch.h"
 
+#include "SDL2/SDL.h"
+#include "glad/glad.h"
+
 #include "cl_main.h"
 #include "engine_main.h"
 #include "engine_messages.h"
@@ -34,6 +37,33 @@ void Engine_Init(void)
     // Call module initialization functions
     CL_InitModule();
     SV_InitModule();
+}
+
+/* Input handle */
+void Engine_InputHandle(void)
+{
+    // Here is the keys processing/functions with processing
+    
+    if (KEY_DOWN(INPUT_KEY_W)) 
+    {
+        printf("W pressed!\n");
+        glClearColor(255.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f, 1.0f);
+    }
+    if (KEY_DOWN(INPUT_KEY_A)) 
+    {
+        printf("A pressed!\n");
+        glClearColor(0.0f / 255.0f, 255.0f / 255.0f, 0.0f / 255.0f, 1.0f);
+    }
+    if (KEY_DOWN(INPUT_KEY_S)) 
+    {
+        printf("S pressed!\n");
+        glClearColor(0.0f / 255.0f, 0.0f / 255.0f, 255.0f / 255.0f, 1.0f);
+    }
+    if (KEY_DOWN(INPUT_KEY_D)) 
+    {
+        printf("D pressed!\n");
+        glClearColor(255.0f / 255.0f, 255.0f / 255.0f, 0.0f / 255.0f, 1.0f);
+    }
 }
 
 /* Updating (every frame) */

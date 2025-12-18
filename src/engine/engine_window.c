@@ -77,6 +77,22 @@ void Engine_LoadGameInfo(void)
 /* Creating window */
 void Engine_Window(void)
 {
+    // Loading inputsystem module
+    FileSystem* FileSysIPS;
+
+    FileSysIPS = FileSys_LoadModule("./bin/inputsystem.so");
+
+    FileSys_GetProcAddress(FileSysIPS, Input_Init);
+    FileSys_GetProcAddress(FileSysIPS, Input_UpdatePreviousState);
+    FileSys_GetProcAddress(FileSysIPS, Input_Shutdown);
+
+    if (!FileSysIPS)
+    {
+        Error("Failed to load inputsystem.so\n");
+
+        FileSys_CloseModule(FileSysIPS);
+    }
+
     // Loading info.txt with title
     Engine_LoadGameInfo();
 
@@ -141,6 +157,8 @@ void Engine_Window(void)
         
         return;
     }
+    
+    Input_Init();
 
     glEnable(GL_DEPTH_TEST);
 
@@ -165,8 +183,15 @@ void Engine_Window(void)
                     break;
             }
         }
+        
+        // Update previous keyboard state at the end of the frame
+        Input_UpdatePreviousState();
+        
+        Engine_InputHandle();
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        
+        glClearColor(0.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f, 1.0f);
 
         Engine_Update();
 
@@ -175,6 +200,8 @@ void Engine_Window(void)
         // Small delay to prevent CPU overuse
         SDL_Delay(fpsLimit);
     }
+    
+    Input_Shutdown();
 
     Engine_Shutdown();
 

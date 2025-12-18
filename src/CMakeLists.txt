@@ -18,6 +18,7 @@ set(ARCH_BITNESS ${BIT_ARCH} CACHE INTERNAL "Architecture bitness")
 # The projects are in the order of building
 add_subdirectory(stdlib)
 add_subdirectory(filesystem)
+add_subdirectory(inputsystem)
 add_subdirectory(launcher)
 add_subdirectory(engine)
 add_subdirectory(game/client)

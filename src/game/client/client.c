@@ -9,7 +9,7 @@
 /* Client initialization */
 void Client_Init(void)
 {
-    Message("Hello World from client.so!\n");
+    Msg("Hello World from client.so!\n");
 }
 
 /* Updating */
@@ -21,5 +21,5 @@ void Client_Update(void)
 /* Shutdown */
 void Client_Shutdown(void)
 {
-    Message("Client.so shutdown!\n");
+    Msg("Client.so shutdown!\n");
 }

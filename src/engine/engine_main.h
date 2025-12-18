@@ -13,6 +13,9 @@
 /* Engine initialization */
 void Engine_Init(void);
 
+/* Input handle */
+void Engine_InputHandle(void);
+
 /* Updating (every frame) */
 void Engine_Update(void);
 
